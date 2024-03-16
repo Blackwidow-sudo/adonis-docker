@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+  <nav class="bg-sky-200">
+    <ul class="flex items-center justify-center">
+      <li>
+        <a
+          class="block px-4 py-2 hover:bg-black/10 {{ request.url() === route('home') ? 'bg-black/5' : '' }}"
+          href="{{ route('home') }}">
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          class="block px-4 py-2 hover:bg-black/10 {{ request.url() === route('todos.index') ? 'bg-black/5' : '' }}"
+          href="{{ route('todos.index') }}">
+          {{ t('headers.my_todos') }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <main class="container pt-4 mx-auto">
+    {{{ await $slots.main() }}}
+  </main>
+  <script>
+    const [ _, token ] = document.cookie.split(';').find(cookie => {
+      const [key, value] = cookie.split('=')
+
+      return key.trim() === 'XSRF-TOKEN'
+    }).split('=')
+
+    document.body.addEventListener('htmx:configRequest', e => {
+      e.detail.headers['X-XSRF-TOKEN'] = token
+    })
+  </script>
+</body>
+</html>

@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> AdonisJS - A fully featured web framework for Node.js </title>
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body>
+@layout({ title: 'Home' })
   <h1>{{ t('messages.it_works') }}</h1>
-</body>
-</html>
+@end

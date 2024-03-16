@@ -1,0 +1,17 @@
+<li
+  class="flex items-center justify-center"
+  data-id="{{ todo.id }}">
+  <span class="w-full px-4 py-2 border rounded-l-md">
+    {{ todo.content }}
+  </span>
+  <div class="border-r border-y rounded-r-md">
+    <button
+      hx-delete="{{ route('todos.destroy', { id: todo.id }) }}"
+      hx-target="[data-id='{{ todo.id }}']"
+      hx-swap="delete"
+      class="px-4 py-2 hover:bg-red-200"
+      type="button">
+      {{ t('button.delete') }}
+    </button>
+  </div>
+</li>
