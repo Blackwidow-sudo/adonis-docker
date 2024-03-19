@@ -13,6 +13,8 @@ services:
       context: .
     environment:
       NODE_ENV: production
+    env_file:
+      - .env.prod
     ports:
       - 3333:3333
 
